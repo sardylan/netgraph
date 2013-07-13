@@ -24,20 +24,37 @@
 #include <gd.h>
 
 #include "imagefoo.h"
+#include "cfg.h"
 
 gdImagePtr ngImageCreate(int x, int y)
 {
-    gdImagePtr ret;
-    int color_bg;
-    int color_white;
+    gdImagePtr img;
+    int i;
+    int color_bg, color_black;
+    int graph_y;
+    int gray_value, color_gradient;
+    int border_left, border_right, border_top, border_bottom;
 
-    ret = gdImageCreateTrueColor(x, y);
-    color_bg = gdImageColorAllocate(ret, 0, 0, 0);
-    gdImageColorTransparent(ret, color_bg);
+    border_left = NETGRAPH_CONFIG_IMAGE_BORDER_LEFT_DEFAULT;
+    border_right = NETGRAPH_CONFIG_IMAGE_BORDER_RIGHT_DEFAULT;
+    border_top = NETGRAPH_CONFIG_IMAGE_BORDER_TOP_DEFAULT;
+    border_bottom = NETGRAPH_CONFIG_IMAGE_BORDER_BOTTOM_DEFAULT;
 
-    color_white = gdImageColorAllocateAlpha(img, 255, 255, 255, 64);
+    img = gdImageCreateTrueColor(x, y);
+    color_bg = gdImageColorAllocate(img, 255, 255, 255);
+    gdImageFill(img, 0, 0, color_bg);
+    gdImageColorTransparent(img, color_bg);
 
-    gdImageFilledRectangle(img, 30, 10, img_x - (30+10), img_y - (10+10), color_white);
+    graph_y = y - border_top - border_bottom - 2;
 
-    return ret;
+    for(i=0; i<=graph_y; i++) {
+        gray_value = (int) 225 - (200 * ((double) i/graph_y));
+        color_gradient = gdImageColorAllocateAlpha(img, gray_value, gray_value, gray_value, 0);
+        gdImageLine(img, border_left+1, border_top + 1 + i, x - border_right - 1, border_top + 1 + i, color_gradient);
+    }
+
+    color_black = gdImageColorAllocateAlpha(img, 0, 0, 0, 0);
+    gdImageRectangle(img, border_left, border_top, x-border_right, y-border_bottom, color_black);
+
+    return img;
 }
