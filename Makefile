@@ -24,13 +24,14 @@ CC =		gcc
 STRIP =		strip
 
 CFLAGS =	-O2 -ggdb -Wall
-LDFLAGS =	
+LDFLAGS =	-lgd
 STRIPFLAGS =	--strip-all
 
 TARGET =	netgraph
 
 OBJS =		netgraph.o \
-		ui.o
+		ui.o \
+		imagefoo.o
 
 
 all: debug
@@ -49,4 +50,4 @@ strip-all:
 	$(STRIP) $(STRIPFLAGS) $(TARGET)
 
 clean:
-	rm -rf *.o $(TARGET)
+	rm -rf *.o *.png $(TARGET)

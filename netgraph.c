@@ -24,10 +24,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <gd.h>
 
 #include "netgraph.h"
 #include "ui.h"
 #include "cfg.h"
+#include "imagefoo.h"
 
 int main(int argc, char **argv)
 {
@@ -77,8 +79,26 @@ int ngCheckSystem()
 
 void mainLoop()
 {
+    gdImagePtr img;
+    FILE *output;
+    int img_x, img_y;
+
+    img_x = NETGRAPH_CONFIG_IMAGE_X_DEFAULT;
+    img_y = NETGRAPH_CONFIG_IMAGE_Y_DEFAULT;
+
     while(1) {
         printf("Loop\n");
+
+        img = ngImageCreate(img_x, img_y);
+
+        output = fopen(NETGRAPH_CONFIG_IMAGE_FILENAME_DEFAULT, "wb");
+
+        gdImagePng(img, output);
+
+        fclose(output);
+
+        gdImageDestroy(img);
+
         sleep(NETGRAPH_CONFIG_REFRESH_DEFAULT);
     }
 }

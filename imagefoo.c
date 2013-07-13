@@ -21,13 +21,23 @@
  */
 
 
-#ifndef __CFG_H
-#define __CFG_H
+#include <gd.h>
 
-#define NETGRAPH_CONFIG_REFRESH_DEFAULT 1
+#include "imagefoo.h"
 
-#define NETGRAPH_CONFIG_IMAGE_FILENAME_DEFAULT "./image.png"
-#define NETGRAPH_CONFIG_IMAGE_X_DEFAULT 400
-#define NETGRAPH_CONFIG_IMAGE_Y_DEFAULT 100
+gdImagePtr ngImageCreate(int x, int y)
+{
+    gdImagePtr ret;
+    int color_bg;
+    int color_white;
 
-#endif
+    ret = gdImageCreateTrueColor(x, y);
+    color_bg = gdImageColorAllocate(ret, 0, 0, 0);
+    gdImageColorTransparent(ret, color_bg);
+
+    color_white = gdImageColorAllocateAlpha(img, 255, 255, 255, 64);
+
+    gdImageFilledRectangle(img, 30, 10, img_x - (30+10), img_y - (10+10), color_white);
+
+    return ret;
+}

@@ -21,13 +21,9 @@
  */
 
 
-#ifndef __CFG_H
-#define __CFG_H
+#ifndef __IMAGEFOO_H
+#define __IMAGEFOO_H
 
-#define NETGRAPH_CONFIG_REFRESH_DEFAULT 1
-
-#define NETGRAPH_CONFIG_IMAGE_FILENAME_DEFAULT "./image.png"
-#define NETGRAPH_CONFIG_IMAGE_X_DEFAULT 400
-#define NETGRAPH_CONFIG_IMAGE_Y_DEFAULT 100
+gdImagePtr ngImageCreate(int, int);
 
 #endif
