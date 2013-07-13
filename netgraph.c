@@ -23,9 +23,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "netgraph.h"
 #include "ui.h"
+#include "cfg.h"
 
 int main(int argc, char **argv)
 {
@@ -37,6 +39,7 @@ int main(int argc, char **argv)
 
     if(ngCheckSystem() == 1) {
         fprintf(stderr, "OK\n");
+        mainLoop();
     } else {
         fprintf(stderr, "ERROR\n");
         fprintf(stderr, "File /proc/net/dev doesn't exists!!!\n");
@@ -44,6 +47,7 @@ int main(int argc, char **argv)
     }
 
     uiByeBye();
+
     return ret;
 }
 
@@ -69,4 +73,12 @@ int ngCheckSystem()
     }
 
     return ret;
+}
+
+void mainLoop()
+{
+    while(1) {
+        printf("Loop\n");
+        sleep(NETGRAPH_CONFIG_REFRESH_DEFAULT);
+    }
 }

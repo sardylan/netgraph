@@ -21,11 +21,9 @@
  */
 
 
-#ifndef __NETGRAPH_H
-#define __NETGRAPH_H
+#ifndef __CFG_H
+#define __CFG_H
 
-void startup();
-int ngCheckSystem();
-void mainLoop();
+#define NETGRAPH_CONFIG_REFRESH_DEFAULT 5
 
 #endif
