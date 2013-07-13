@@ -21,20 +21,13 @@
  */
 
 
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef __VERSION_H
+#define __VERSION_H
 
-#include "netgraph.h"
-#include "ui.h"
+#define NETGRAPH_NAME "NetGraph"
 
-int main(int argc, char **argv)
-{
-    startup();
+#define NETGRAPH_VERSION_MAJOR 0
+#define NETGRAPH_VERSION_MINOR 0
+#define NETGRAPH_VERSION_DEBUG 0
 
-    return 0;
-}
-
-void startup()
-{
-    uiWelcome();
-}
+#endif

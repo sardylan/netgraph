@@ -29,7 +29,8 @@ STRIPFLAGS =	--strip-all
 
 TARGET =	netgraph
 
-OBJS =		netgraph.o
+OBJS =		netgraph.o \
+		ui.o
 
 
 all: debug

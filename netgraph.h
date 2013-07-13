@@ -21,20 +21,9 @@
  */
 
 
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef __NETGRAPH_H
+#define __NETGRAPH_H
 
-#include "netgraph.h"
-#include "ui.h"
+void startup();
 
-int main(int argc, char **argv)
-{
-    startup();
-
-    return 0;
-}
-
-void startup()
-{
-    uiWelcome();
-}
+#endif

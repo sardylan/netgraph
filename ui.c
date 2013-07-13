@@ -24,17 +24,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "netgraph.h"
 #include "ui.h"
+#include "version.h"
 
-int main(int argc, char **argv)
+void uiWelcome()
 {
-    startup();
-
-    return 0;
-}
-
-void startup()
-{
-    uiWelcome();
+    printf("\n\n\n");
+    printf("############################################################\n");
+    printf("### %s %d.%d.%d\n", NETGRAPH_NAME, NETGRAPH_VERSION_MAJOR, NETGRAPH_VERSION_MINOR, NETGRAPH_VERSION_DEBUG);
+    printf("############################################################\n");
+    printf("\n\n\n");
 }
