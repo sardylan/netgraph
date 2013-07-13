@@ -35,3 +35,8 @@ void uiWelcome()
     printf("############################################################\n");
     printf("\n\n\n");
 }
+
+void uiByeBye()
+{
+    printf("\n\n\n");
+}

@@ -25,5 +25,6 @@
 #define __UI_H
 
 void uiWelcome();
+void uiByeBye();
 
 #endif

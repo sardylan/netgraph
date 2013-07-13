@@ -29,12 +29,44 @@
 
 int main(int argc, char **argv)
 {
+    int ret;
+
+    ret = 0;
+
     startup();
 
-    return 0;
+    if(ngCheckSystem() == 1) {
+        fprintf(stderr, "OK\n");
+    } else {
+        fprintf(stderr, "ERROR\n");
+        fprintf(stderr, "File /proc/net/dev doesn't exists!!!\n");
+        ret = 1;
+    }
+
+    uiByeBye();
+    return ret;
 }
 
 void startup()
 {
     uiWelcome();
+}
+
+int ngCheckSystem()
+{
+    int ret;
+    FILE *fd;
+
+    ret = 0;
+
+    fprintf(stderr, "Checking System... ");
+
+    fd = fopen("/proc/net/dev", "r");
+
+    if(fd != NULL) {
+        fclose(fd);
+        ret = 1;
+    }
+
+    return ret;
 }

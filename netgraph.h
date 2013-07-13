@@ -25,5 +25,6 @@
 #define __NETGRAPH_H
 
 void startup();
+int ngCheckSystem();
 
 #endif
