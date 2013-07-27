@@ -12,6 +12,10 @@
 *.dylib
 
 # Executables
+netgraph
 *.exe
 *.out
 *.app
+
+# Images
+*.png
